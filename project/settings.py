@@ -106,7 +106,7 @@ DATABASES['default'].update(db_from_env)
 
 ALLOWED_HOSTS=['bonjoebe-api-production.up.railway.app','127.0.0.1', 'bonjoebe-api-production.up.railway.app/admin','http://localhost:4200']
 
-CSRF_TRUSTED_ORIGINS = ['bonjoebe-api-production.up.railway.app']
+CSRF_TRUSTED_ORIGINS = ['https://bonjoebe-api-production.up.railway.app']
 
 UPLOADCARE = {  
     'pub_key': config('pub_key'),
