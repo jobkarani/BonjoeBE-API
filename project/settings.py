@@ -104,9 +104,9 @@ db_from_env = dj_database_url.config(conn_max_age=500)
 DATABASES['default'].update(db_from_env)
 
 
-ALLOWED_HOSTS=['ahericaredbb.up.railway.app','127.0.0.1', 'https://ahericaredbb.up.railway.app/admin','http://localhost:4200']
+ALLOWED_HOSTS=['bonjoebe-api-production.up.railway.app','127.0.0.1', 'bonjoebe-api-production.up.railway.app/admin','http://localhost:4200']
 
-CSRF_TRUSTED_ORIGINS = ['https://ahericaredbb.up.railway.app']
+CSRF_TRUSTED_ORIGINS = ['bonjoebe-api-production.up.railway.app']
 
 UPLOADCARE = {  
     'pub_key': config('pub_key'),
