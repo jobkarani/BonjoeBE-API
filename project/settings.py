@@ -94,19 +94,11 @@ DATABASES = {
         # 'NAME': os.path.join(BASE_DIR, 'db.postgresql'),
         'NAME':'railway',
         'USER':'postgres',
-        'PASSWORD':'AsgaSSqjvLIKAKciKmMi',
-        'HOST': 'containers-us-west-145.railway.app',
-        'PORT': '7758',
+        'PASSWORD':'r5xSYxsF3iYHb7nwzmTc',
+        'HOST': 'containers-us-west-173.railway.app',
+        'PORT': '7359',
     }
 }
-
-EMAIL_BACKEND = 'simple_mail.backends.AsyncEmailBackend'
-EMAIL_HOST = 'https://ahericaredbb.up.railway.app'
-EMAIL_PORT = 587
-EMAIL_USE_TLS = True
-EMAIL_HOST_USER = 'healthylivingkenya254@gmail.com'
-EMAIL_HOST_PASSWORD = '12345678jk'
-
 
 db_from_env = dj_database_url.config(conn_max_age=500)
 DATABASES['default'].update(db_from_env)
