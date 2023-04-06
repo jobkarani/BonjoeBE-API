@@ -42,8 +42,8 @@ class PhoneCategory(models.Model):
     image = ImageField(default="", manual_crop="")
 
     class Meta:
-        verbose_name = 'category'
-        verbose_name_plural = 'categories'
+        verbose_name = 'Phonecategory'
+        verbose_name_plural = 'Phonecategories'
 
     def get_url(self):
         return reverse('products_by_category', args=[self.slug])
@@ -61,7 +61,7 @@ class Phones(models.Model):
     new_price = models.FloatField()
     old_price = models.FloatField()
     is_available = models.BooleanField(default = True)
-    category = models.ForeignKey(Category, on_delete=models.CASCADE)
+    category = models.ForeignKey(PhoneCategory, on_delete=models.CASCADE)
 
     class Meta:
         ordering = ('name',)
