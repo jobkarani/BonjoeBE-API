@@ -27,4 +27,4 @@ class PhoneCategorySerializer(serializers.ModelSerializer):
     phones = PhoneSerializer(many=True, read_only=True)
     class Meta:
         model = PhoneCategory
-        fields = ['id', 'name', 'slug','image', 'products']
+        fields = ['id', 'name', 'slug', 'products']
