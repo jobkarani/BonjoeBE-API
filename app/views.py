@@ -58,3 +58,41 @@ def getProductsByCategory(request, category_id):
         products = Product.objects.filter(category=category)
         serializer = ProductSerializer(products, many=True)
         return Response(serializer.data)
+    
+@api_view(['GET',])
+def api_phones(request):
+    if request.method == "GET":
+        phones = Phones.objects.all()
+
+        # Set up pagination
+        paginator = PageNumberPagination()
+        paginator.page_size = 300
+        result_page = paginator.paginate_queryset(phones, request)
+
+        # Serialize the result page
+        serializer = PhoneSerializer(result_page, many=True)
+        return Response(serializer.data)
+    
+@api_view(['GET',])
+def api_phone_categories(request):
+    if request.method == "GET":
+        phonecategories = PhoneCategory.objects.all()
+        serializer = PhoneCategorySerializer(phonecategories, many=True)
+        return Response(serializer.data)
+
+
+@api_view(['GET'])
+def getPhoneDetails(request, phone_id):
+    if request.method == "GET":
+        phone= Phones.objects.filter(id = phone_id)
+        serializer = PhoneSerializer(phone, many=True)
+        return Response(serializer.data)
+
+
+@api_view(['GET'])
+def getPhonesByPhoneCategory(request, phonecategory_id):
+    if request.method == "GET":
+        phonecategory = get_object_or_404(PhoneCategory, id=phonecategory_id)
+        phone = Product.objects.filter(category=phonecategory)
+        serializer = PhoneSerializer(phone, many=True)
+        return Response(serializer.data)
