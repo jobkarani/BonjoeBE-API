@@ -10,4 +10,8 @@ urlpatterns = [
     path('api_phone_categories/', views.api_phone_categories, name='apiPhoneCategories' ),
     path('getPhoneDetails/<int:phone_id>/', views.getPhoneDetails, name='getPhoneDetails' ),
     path('api_categoryphones/<int:phonecategory_id>/', views.getPhonesByPhoneCategory, name='apiCategoryphones' ),
+    path('api_fridges/', views.api_fridges, name='apiFridges' ),
+    path('api_fridge_categories/', views.api_fridge_categories, name='apiFridgeCategories' ),
+    path('getFridgeDetails/<int:fridge_id>/', views.getFridgeDetails, name='getFridgeDetails' ),
+    path('api_categoryfridges/<int:fridgecategory_id>/', views.getFridgesByFridgeCategory, name='apiCategoryfridges' ),
 ]

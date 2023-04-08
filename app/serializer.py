@@ -28,3 +28,17 @@ class PhoneCategorySerializer(serializers.ModelSerializer):
     class Meta:
         model = PhoneCategory
         fields = ['id', 'name', 'slug', 'phones']
+
+class FridgeSerializer(serializers.ModelSerializer):
+    category_name = serializers.CharField(source='category.name')
+    category_slug = serializers.CharField(source='category.slug')
+    category_id = serializers.IntegerField(source='category.id')
+    class Meta:
+        model = Fridge
+        fields = ['id', 'name', 'slug', 'image', 'image2', 'image3', 'description','new_price', 'old_price', 'is_available','category_name','category_slug','category_id']
+
+class FridgeCategorySerializer(serializers.ModelSerializer):
+    fridges = FridgeSerializer(many=True, read_only=True)
+    class Meta:
+        model = FridgeCategory
+        fields = ['id', 'name', 'slug', 'fridges']

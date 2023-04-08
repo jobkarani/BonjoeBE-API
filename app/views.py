@@ -96,3 +96,41 @@ def getPhonesByPhoneCategory(request, phonecategory_id):
         phone = Phones.objects.filter(category=phonecategory)
         serializer = PhoneSerializer(phone, many=True)
         return Response(serializer.data)
+    
+@api_view(['GET',])
+def api_fridges(request):
+    if request.method == "GET":
+        fridge = Fridge.objects.all()
+
+        # Set up pagination
+        paginator = PageNumberPagination()
+        paginator.page_size = 300
+        result_page = paginator.paginate_queryset(fridge, request)
+
+        # Serialize the result page
+        serializer = FridgeSerializer(result_page, many=True)
+        return Response(serializer.data)
+    
+@api_view(['GET',])
+def api_fridge_categories(request):
+    if request.method == "GET":
+        fridgecategories = FridgeCategory.objects.all()
+        serializer = FridgeCategorySerializer(fridgecategories, many=True)
+        return Response(serializer.data)
+
+
+@api_view(['GET'])
+def getFridgeDetails(request, fridge_id):
+    if request.method == "GET":
+        fridge= Fridge.objects.filter(id = fridge_id)
+        serializer = FridgeSerializer(fridge, many=True)
+        return Response(serializer.data)
+
+
+@api_view(['GET'])
+def getFridgesByFridgeCategory(request, fridgecategory_id):
+    if request.method == "GET":
+        fridgecategory = get_object_or_404(FridgeCategory, id=fridgecategory_id)
+        fridge = Fridge.objects.filter(category=fridgecategory)
+        serializer = FridgeSerializer(fridge, many=True)
+        return Response(serializer.data)
