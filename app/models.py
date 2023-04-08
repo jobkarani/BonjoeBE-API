@@ -41,8 +41,8 @@ class PhoneCategory(models.Model):
     slug = models.SlugField(max_length=100, unique=True)
 
     class Meta:
-        verbose_name = 'Phonecategory'
-        verbose_name_plural = 'Phonecategories'
+        verbose_name = 'phonecategory'
+        verbose_name_plural = 'phonecategories'
 
     def get_url(self):
         return reverse('products_by_category', args=[self.slug])
