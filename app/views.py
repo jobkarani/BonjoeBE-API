@@ -93,6 +93,6 @@ def getPhoneDetails(request, phone_id):
 def getPhonesByPhoneCategory(request, phonecategory_id):
     if request.method == "GET":
         phonecategory = get_object_or_404(PhoneCategory, id=phonecategory_id)
-        phone = Product.objects.filter(category=phonecategory)
+        phone = Phones.objects.filter(category=phonecategory)
         serializer = PhoneSerializer(phone, many=True)
         return Response(serializer.data)
