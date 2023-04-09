@@ -6,7 +6,6 @@ from pyuploadcare.dj.models import ImageField
 class Category(models.Model):
     name = models.CharField(max_length=200, unique=True)
     slug = models.SlugField(max_length=100, unique=True)
-    image = ImageField(default="", manual_crop="")
 
     class Meta:
         verbose_name = 'category'
