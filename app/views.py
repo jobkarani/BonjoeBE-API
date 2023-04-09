@@ -134,3 +134,42 @@ def getFridgesByFridgeCategory(request, fridgecategory_id):
         fridge = Fridge.objects.filter(category=fridgecategory)
         serializer = FridgeSerializer(fridge, many=True)
         return Response(serializer.data)
+    
+    
+@api_view(['GET',])
+def api_homeAppliances(request):
+    if request.method == "GET":
+        homeAppliances = HomeAppliances.objects.all()
+
+        # Set up pagination
+        paginator = PageNumberPagination()
+        paginator.page_size = 300
+        result_page = paginator.paginate_queryset(homeAppliances, request)
+
+        # Serialize the result page
+        serializer = HomeAppliancesSerializer(result_page, many=True)
+        return Response(serializer.data)
+    
+@api_view(['GET',])
+def api_homeAppliances_categories(request):
+    if request.method == "GET":
+        homeAppliancescategories = HomeAppliancesCategory.objects.all()
+        serializer = HomeAppliancesCategorySerializer(homeAppliancescategories, many=True)
+        return Response(serializer.data)
+
+
+@api_view(['GET'])
+def getHomeAppliancesDetails(request, homeAppliances_id):
+    if request.method == "GET":
+        homeAppliances= HomeAppliances.objects.filter(id = homeAppliances_id)
+        serializer = HomeAppliancesSerializer(homeAppliances, many=True)
+        return Response(serializer.data)
+
+
+@api_view(['GET'])
+def getHomeAppliancesByHomeAppliancesCategory(request, homeAppliancescategory_id):
+    if request.method == "GET":
+        homeAppliancescategory = get_object_or_404(HomeAppliancesCategory, id=homeAppliancescategory_id)
+        homeAppliances = HomeAppliances.objects.filter(category=homeAppliancescategory)
+        serializer = HomeAppliancesSerializer(homeAppliances, many=True)
+        return Response(serializer.data)
